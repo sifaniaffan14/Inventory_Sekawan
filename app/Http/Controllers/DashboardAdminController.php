@@ -32,4 +32,14 @@ class DashboardAdminController extends Controller
             return $this->response($e->getMessage(), true);
         }
     }
+
+    public function chartPemesanan()
+    {
+        try {
+            $data = $request->all();
+            
+        } catch (\Exception $e) {
+            return $this->response($e->getMessage(), true);
+        }
+    }
 }

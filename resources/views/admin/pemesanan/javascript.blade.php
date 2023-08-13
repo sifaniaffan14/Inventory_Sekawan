@@ -114,25 +114,14 @@
             }
 
             $('#tabelDriver tbody').on('click', 'tr', function () {
-                var data = dataTable.row(this).data();
+                var get = dataTable.row(this).data();
                 $('.modalDriver').modal('hide');
-                selectData(data); 
+                var data = {
+                    data_id: get.Id,
+                    data_value: get.Nama
+                }
+                selectData(data, 'driver_id', 'selectDriver'); 
             });
-
-            function selectData(data) {
-
-                var selectOption = $('#selectDriver');
-
-                var newOption = $('<option>', {
-                    value: data.Id,
-                    text: data.Nama
-                });
-
-                selectOption.find('option[value="#"]').remove();
-
-                selectOption.append(newOption);
-                $('#driver_id').val(data.Id);
-            }
 
             function searchFunction() {
                 const input = document.getElementById("search_driver").value;        
@@ -179,25 +168,14 @@
             }
 
             $('#tabelPemesan tbody').on('click', 'tr', function () {
-                var data = dataTable.row(this).data();
+                var get = dataTable.row(this).data();
                 $('.modalPemesan').modal('hide');
-                selectData(data); 
+                var data = {
+                    data_id: get.Id,
+                    data_value: get.Nama
+                }
+                selectData(data, 'karyawan_id', 'selectKaryawan'); 
             });
-
-            function selectData(data) {
-
-                var selectOption = $('#selectKaryawan');
-
-                var newOption = $('<option>', {
-                    value: data.Id,
-                    text: data.Nama
-                });
-
-                selectOption.find('option[value="#"]').remove();
-
-                selectOption.append(newOption);
-                $('#karyawan_id').val(data.Id);
-            }
            
             function searchFunction() {
                 const input = document.getElementById("search_pemesan").value;        
@@ -245,25 +223,14 @@
                 return data;
             }
             $('#tabelApproval tbody').on('click', 'tr', function () {
-                var data = dataTable.row(this).data();
+                var get = dataTable.row(this).data();
                 $('.modalApproval').modal('hide');
-                selectData(data); 
+                var data = {
+                    data_id: get.Id,
+                    data_value: get.Nama
+                }
+                selectData(data, 'karyawan_approval_id', 'selectApproval'); 
             });
-
-            function selectData(data) {
-
-                var selectOption = $('#selectApproval');
-
-                var newOption = $('<option>', {
-                    value: data.Id,
-                    text: data.Nama
-                });
-
-                selectOption.find('option[value="#"]').remove();
-
-                selectOption.append(newOption);
-                $('#karyawan_approval_id').val(data.Id);
-            }
            
             function searchFunction() {
                 const input = document.getElementById("search_approval").value;        
@@ -312,26 +279,15 @@
             }
 
             $('#tabelKendaraan tbody').on('click', 'tr', function () {
-                var data = dataTable.row(this).data();
-                console.log(data)
+                var get = dataTable.row(this).data();
                 $('.modalKendaraan').modal('hide');
-                selectData(data); 
+
+                var data = {
+                    data_id: get.Id,
+                    data_value: get.namaKendaraan
+                }
+                selectData(data, 'karyawan_id', 'selectKaryawan'); 
             });
-
-            function selectData(data) {
-
-                var selectOption = $('#selectKendaraan');
-
-                var newOption = $('<option>', {
-                    value: data.Id,
-                    text: data.namaKendaraan
-                });
-
-                selectOption.find('option[value="#"]').remove();
-
-                selectOption.append(newOption);
-                $('#kendaraan_id').val(data.Id);
-            }
 
             function searchFunction() {
                 const input = document.getElementById("search_kendaraan").value;        
@@ -340,6 +296,21 @@
 
             document.getElementById("search_kendaraan").addEventListener("input", searchFunction);
         } );      
+    }
+
+    function selectData(data, input_id, select_id) {
+
+        var selectOption = $('#'+select_id);
+
+        var newOption = $('<option>', {
+            value: data.data_id,
+            text: data.data_value
+        });
+
+        selectOption.find('option[value="#"]').remove();
+
+        selectOption.html(newOption);
+        $('#'+input_id).val(data.data_id);
     }
 
     function onEdit(id){
@@ -354,20 +325,31 @@
                 if(response.status == true){
                     loadForm();
                     DisplayEdit();
-                    $.each(response.data[0], function( k, v ){
-                        var selectOption = $('#selectKaryawan');
+                    var data = response.data[0]
 
-                        var newOption = $('<option>', {
-                            value: v.id,
-                            text: v.nama_pemesan
-                        });
+                    var pemesan = {
+                        data_id: data.karyawan_id,
+                        data_value: data.nama_pemesan
+                    }
+                    selectData(pemesan, 'karyawan_id', 'selectKaryawan'); 
 
-                        selectOption.find('option[value="#"]').remove();
+                    var kendaraan = {
+                        data_id: data.kendaraan_id,
+                        data_value: data.nama_kendaraan
+                    }
+                    selectData(kendaraan, 'kendaraan_id', 'selectKendaraan'); 
 
-                        selectOption.append(newOption);
-                        $('#kendaraan_id').val(v.id);
+                    var driver = {
+                        data_id: data.driver_id,
+                        data_value: data.nama
+                    }
+                    selectData(driver, 'driver_id', 'selectDriver'); 
 
-                    });
+                    var approval = {
+                        data_id: data.karyawan_approval_id,
+                        data_value: data.nama_approval
+                    }
+                    selectData(approval, 'karyawan_approval_id', 'selectApproval'); 
                 } 
             }
         })
@@ -496,9 +478,11 @@
     DisplayEdit = () => {
 		$('.actEdit').removeClass('d-none');
         $('.actCreate').addClass('d-none');
-        $(`#formPemesanan input`).attr('disabled', 'disabled')
+        $(`#formPemesanan select`).attr('disabled', 'disabled')
         $('.actEdit1').addClass('d-none');
         $('.dataPemesanan').removeClass('d-none');
+        $('#modalPemesan').removeAttr('data-bs-toggle');
+        $('#modalPemesan').removeAttr('data-bs-target');
 	}
 
     onDisplayEdit = () => {
@@ -507,7 +491,8 @@
         $('.actEdit1').removeClass('d-none');
         $('.dataPemesanan').addClass('d-none');
         $('.actCreate1').addClass('d-none');
-        $(`#formPemesanan input`).removeAttr('disabled', 'disabled')
+        // $(`#formPemesanan input`).removeAttr('disabled', 'disabled')
+        $('#modalPemesan').Attr('data-bs-toggle');
 
 	}
 

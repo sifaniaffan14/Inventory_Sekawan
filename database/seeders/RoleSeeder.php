@@ -19,5 +19,17 @@ class RoleSeeder extends Seeder
             'nama_role' => 'admin',
             'is_active' => '1',
         ]);
+        role::create([
+            'nama_role' => 'direktur',
+            'is_active' => '1',
+        ]);
+        role::create([
+            'nama_role' => 'manager',
+            'is_active' => '1',
+        ]);
+        role::create([
+            'nama_role' => 'staff',
+            'is_active' => '1',
+        ]);
     }
 }
