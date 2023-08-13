@@ -482,8 +482,7 @@
         $(`#formPemesanan select`).attr('disabled', 'disabled')
         $('.actEdit1').addClass('d-none');
         $('.dataPemesanan').removeClass('d-none');
-        $('#modalPemesan').removeAttr('data-bs-toggle');
-        $('#modalPemesan').removeAttr('data-bs-target');
+        $('.mdl[data-bs-toggle="modal"]').removeAttr('data-bs-toggle');
 	}
 
     onDisplayEdit = () => {
@@ -493,7 +492,7 @@
         $('.dataPemesanan').addClass('d-none');
         $('.actCreate1').addClass('d-none');
         // $(`#formPemesanan input`).removeAttr('disabled', 'disabled')
-        $('#modalPemesan').Attr('data-bs-toggle');
+        $('.mdl').attr('data-bs-toggle', 'modal');
 
 	}
 

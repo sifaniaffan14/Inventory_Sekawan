@@ -23,28 +23,28 @@
                 <form onsubmit="onSave(event)" class="d-flex flex-wrap gap-5 justify-content-center" id="formPemesanan" name="formPemesanan" method="POST" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id">
-                    <div class="d-flex flex-column gap-1 pe-5" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalPemesan">
+                    <div class="d-flex flex-column gap-1 pe-5 mdl" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalPemesan">
                         <label for="selectKaryawan" class="fw-bolder">Nama Pemesan</label>
                         <select id="selectKaryawan" style="width: 100%" disabled>
                             <option value="#" selected disabled>Silahkan Pilih Pemesan</option>
                         </select>
                         <input type="hidden" name="karyawan_id" id="karyawan_id" value="">
                     </div>
-                    <div class="d-flex flex-column gap-1 pe-5" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalKendaraan">
+                    <div class="d-flex flex-column gap-1 pe-5 mdl" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalKendaraan">
                         <label for="selectKendaraan" class="fw-bolder">Nama Kendaraan</label>
                         <select id="selectKendaraan" style="width: 100%" disabled>
                             <option value="#" selected disabled>Silahkan Pilih Kendaraan</option>
                         </select>
                         <input type="hidden" name="kendaraan_id" id="kendaraan_id" value="">
                     </div>
-                    <div class="d-flex flex-column gap-1 pe-5" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalDriver">
+                    <div class="d-flex flex-column gap-1 pe-5 mdl" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalDriver">
                         <label for="selectDriver" class="fw-bolder">Nama Driver</label>
                         <select id="selectDriver" style="width: 100%" disabled>
                             <option value="#" selected disabled>Silahkan Pilih Driver</option>
                         </select>
                         <input type="hidden" name="driver_id" id="driver_id" value="">
                     </div>
-                    <div class="d-flex flex-column gap-1 pe-5" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalApproval">
+                    <div class="d-flex flex-column gap-1 pe-5 mdl" style="width:49%" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalApproval">
                         <label for="selectApproval" class="fw-bolder">Nama Approval</label>
                         <select id="selectApproval" style="width: 100%" disabled>
                             <option value="#" selected disabled>Silahkan Pilih Pihak Approval</option>
