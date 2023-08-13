@@ -5,6 +5,7 @@ MySQL Server version 8.0.30
 panduan penggunaan:
 - Run git clone https://github.com/sifaniaffan14/Inventory_Sekawan.git
 - Run composer install
+- Run composer require maatwebsite/excel
 - Run cp .env.example .env
 - Run php artisan key:generate
 - Run php artisan migrate
