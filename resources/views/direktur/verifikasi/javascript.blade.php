@@ -188,6 +188,8 @@
     function onRefresh(){
         $('#belumverif').DataTable().destroy();
         tableBelumverif()
+        $('#verif').DataTable().destroy();  
+        tableSudahverif()
         document.getElementById("search_verif").value = "";
     }
 
