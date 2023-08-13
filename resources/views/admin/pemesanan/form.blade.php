@@ -69,8 +69,8 @@
                                             <th class="fw-bolder" style="max-width: 37px"> No </th>
                                             <th class="fw-bolder d-none">Id</th>
                                             <th class="fw-bolder">Nama</th>
-                                            <th class="fw-bolder">Jabatan</th>
                                             <th class="fw-bolder">Divisi</th>
+                                            <th class="fw-bolder">Jabatan</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>

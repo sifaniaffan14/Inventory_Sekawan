@@ -15,7 +15,6 @@ class Controller extends BaseController
             $operation= array(
                 'status' => true,
                 'message'=>'Success To Load Data',
-                'total' => count($data),
                 'data'=>$data
             );
         } else{

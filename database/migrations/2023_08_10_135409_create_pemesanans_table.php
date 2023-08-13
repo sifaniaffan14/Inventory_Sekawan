@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('karyawan_id')->references('id')->on('karyawans');
             $table->foreignId('driver_id')->references('id')->on('drivers');
             $table->foreignId('karyawan_approval_id')->references('id')->on('karyawans');
-            $table->foreignId('kendaraan')->references('id')->on('kendaraans');
+            $table->foreignId('kendaraan_id')->references('id')->on('kendaraans');
             $table->string('status')->nullable();
             $table->timestamps();
         });

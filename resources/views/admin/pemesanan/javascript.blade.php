@@ -152,7 +152,7 @@
             } );
             
             function processData(response) {
-                // console.log(response.data.karyawan)
+                console.log(response.data.karyawan)
                 var data = [];
                 $.each(response.data.karyawan, function( k, v ){
                     var row = {
@@ -286,7 +286,7 @@
                     data_id: get.Id,
                     data_value: get.namaKendaraan
                 }
-                selectData(data, 'karyawan_id', 'selectKaryawan'); 
+                selectData(data, 'kendaraan_id', 'selectKendaraan'); 
             });
 
             function searchFunction() {
@@ -326,7 +326,8 @@
                     loadForm();
                     DisplayEdit();
                     var data = response.data[0]
-
+                    console.log(data)
+                    $('[name=id]').val(id)
                     var pemesan = {
                         data_id: data.karyawan_id,
                         data_value: data.nama_pemesan
