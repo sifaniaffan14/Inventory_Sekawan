@@ -36,7 +36,7 @@ Route::middleware('protectedPage:1')->group(function () {
     Route::get('/admin-dashboard',[DashboardAdminController::class, 'admin'])->name('admin-dashboard');
 
     Route::controller(DashboardAdminController::class)->name('admin-dashboard.')->prefix('admin-dashboard')->group(function () {
-        $route = array('getData','selectAbsensi','selectPengajuanPerpanjangan');  
+        $route = array('getData','chartPemesanan');  
         foreach ($route as $route) {
             Route::any($route=='index'?'':'/'.$route, $route)->name($route);
         }

@@ -2,16 +2,19 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> 
 <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+var chartInstance;
+
 var urlPath ={
     getData: "{{ route('admin-dashboard.getData') }}",
+    chartPemesanan: "{{ route('admin-dashboard.chartPemesanan') }}",
     }
 
     selectData()
-    selectTahun()
-    // tableAbsensi()
-    // tablePengajuanPerpanjangan()
+    selecTahun()
+    createChart()
 
 
 function selectData(){
@@ -34,7 +37,7 @@ function selectData(){
     })
 }
 
-function selectTahun(){
+function selecTahun(){
         var currentYear = new Date().getFullYear();
         var select = $('#tahun');
         
@@ -46,23 +49,47 @@ function selectTahun(){
         }
     }
 
-    function chart(){
- 
-                    $.ajax({
-                        url: urlPath.onDownload,
-                        type: 'GET',
-                        data: {
-                            tahun : $("#tahun").val()
-                        },
-                        success: function(response){
-                            if(response.status == true){
-                                var fileName = response.data.fileName;
-                                var url = window.location.origin + '/upload_files/'+fileName;
-                                window.open(url,'_blank');
-                            } else{
-                                swal("Warning", response.message, "warning");
-                            }
-                        }
-                    })
-    }
+function chartPemesanan(){
+    var tahun = $("#tahun").val()
+
+    $.ajax({
+        url: urlPath.chartPemesanan,
+        type: 'GET',
+        data: {
+            tahun : tahun
+        },
+        success: function(response){
+            // Hancurkan instance chart sebelum membuat yang baru
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+            
+            createChart(response);
+
+        }  
+    })
+
+}
+
+function createChart(data){
+    const ctx = $('#myChart');
+    chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                label: '# of Votes',
+                data: data,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
 </script>

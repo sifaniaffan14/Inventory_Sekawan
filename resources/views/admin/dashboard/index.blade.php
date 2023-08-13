@@ -163,7 +163,7 @@
     </div>
     <!--end::Col-->
     <!--begin::Col-->
-    <div class="col-xl-8">
+    <div class="col-xl-8 mb-xl-10">
         <!--begin::Chart widget 15-->
         <div class="card card-flush h-xl-100">
             <!--begin::Header-->
@@ -178,7 +178,7 @@
                 <div class="position-relative my-1">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                     <!--end::Svg Icon-->
-                    <select type="text" data-kt-table-widget-4="tahun" id="tahun" class="form-control w-150px fs-7 ps-12" >
+                    <select type="text" data-kt-table-widget-4="tahun" id="tahun" class="form-control w-150px fs-7 ps-12" onchange="chartPemesanan()">
                         <option value="" selected disabled hidden>Pilih tahun</option>
                     </select>
                 </div>
@@ -187,9 +187,7 @@
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-5">
-                <!--begin::Chart container-->
-                <div id="kt_charts_widget_15_chart" class="min-h-auto ps-4 pe-6 mb-3 h-350px"><div style="position: relative; height: 100%;"><div aria-hidden="true" style="position: absolute; width: 572px; height: 350px;"><div><canvas width="572" height="350" style="position: absolute; top: 0px; left: 0px; width: 572px; height: 350px;"></canvas><canvas width="572" height="350" style="position: absolute; top: 0px; left: 0px; width: 572px; height: 350px;"></canvas></div></div><div class="am5-html-container" style="position: absolute; pointer-events: none; overflow: hidden; width: 572px; height: 350px;"></div><div class="am5-reader-container" role="alert" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);"></div><div class="am5-focus-container" role="graphics-document" style="position: absolute; pointer-events: none; top: 0px; left: 0px; overflow: hidden; width: 572px; height: 350px;"><div role="button" aria-label="Zoom Out" style="position: absolute; pointer-events: none; top: 8px; left: -48px; width: 40px; height: 40px;"></div></div><div class="am5-tooltip-container"><div role="tooltip" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); pointer-events: none;">China: 602</div><div role="tooltip" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); pointer-events: none;">Created using amCharts 5</div></div></div></div>
-                <!--end::Chart container-->
+                <canvas id="myChart"></canvas>
             </div>
             <!--end::Body-->
         </div>

@@ -28,7 +28,13 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="rounded-0 menu-link p-4 ps-10" href="{{ route('admin-dashboard')}}">
+                    @if(Auth::user()->role_id === 1)
+                        <a class="rounded-0 menu-link p-4 ps-10" href="{{ route('admin-dashboard')}}">
+                    @elseif(Auth::user()->role_id === 2)
+                        <a class="rounded-0 menu-link p-4 ps-10" href="{{ route('dashboard-direktur')}}">
+                    @elseif(Auth::user()->role_id === 3)
+                        <a class="rounded-0 menu-link p-4 ps-10" href="{{ route('dashboard')}}">
+                    @endif
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <span class="material-icons"> dashboard </span>
@@ -107,10 +113,14 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
-                @elseif(Auth::user()->role_id === 3)
+                @elseif(Auth::user()->role_id === 2 || Auth::user()->role_id === 3)
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="rounded-0 menu-link p-4 ps-10" href="{{route('verifikasi.index')}}">
+                    @if(Auth::user()->role_id === 2)
+                        <a class="rounded-0 menu-link p-4 ps-10" href="{{route('verifikasiPemesanan.index')}}">
+                    @else
+                        <a class="rounded-0 menu-link p-4 ps-10" href="{{ route('verifikasi.index')}}">
+                    @endif
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs014.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -122,7 +132,7 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
-                @elseif(Auth::user()->role_id === 2)
+                {{-- @elseif(Auth::user()->role_id === 2)
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="rounded-0 menu-link p-4 ps-10" href="{{route('verifikasiPemesanan.index')}}">
@@ -136,7 +146,7 @@
                         <span class="menu-title">Verifikasi Pemesanan</span>
                     </a>
                     <!--end:Menu link-->
-                </div>
+                </div> --}}
                 @endif
                 <!--end:Menu item-->
                 <!--begin:Menu item-->

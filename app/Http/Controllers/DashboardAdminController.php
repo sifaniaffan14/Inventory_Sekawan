@@ -6,6 +6,7 @@ use App\Models\driver;
 use App\Models\karyawan;
 use App\Models\kendaraan;
 use App\Models\pemesanan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DashboardAdminController extends Controller
@@ -33,10 +34,22 @@ class DashboardAdminController extends Controller
         }
     }
 
-    public function chartPemesanan()
+    public function chartPemesanan(Request $request)
     {
         try {
             $data = $request->all();
+            $countsByMonth = [];
+            for ($month = 1; $month <= 12; $month++) {
+                $count = DB::table('pemesanans')
+                    ->whereYear('created_at', '=', $data)
+                    ->whereMonth('created_at', '=', $month)
+                    ->count();
+
+                $countsByMonth[] = $count;
+            }
+            
+            return $countsByMonth; 
+
             
         } catch (\Exception $e) {
             return $this->response($e->getMessage(), true);
