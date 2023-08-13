@@ -46,7 +46,7 @@ function selectTahun(){
         }
     }
 
-    function chart{
+    function chart(){
  
                     $.ajax({
                         url: urlPath.onDownload,
