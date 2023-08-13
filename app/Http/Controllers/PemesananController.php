@@ -115,17 +115,15 @@ class PemesananController extends Controller
         try {            
             $data = $request->all();
             $operation= DB::transaction(function () use ($data) {
-                $find = karyawan::find($data['id']);
+                $find = pemesanan::find($data['id']);
                 kendaraan::where('id', $data['kendaraan_id'])->update([
                     'status' => '2'
                 ]);
                 driver::where('id', $data['driver_id'])->update([
                     'status' => '2'
                 ]);
-                return pemesanan::deleted($find);
-
+                return $find->delete();
             });
-            print_r($operation);exit;
             return $this->responseDelete($operation);
         } catch (\Exception $e) {
             return $this->responseDelete($e->getMessage());
@@ -146,8 +144,6 @@ class PemesananController extends Controller
 
                 $countsByMonth[] = $count;
             }
-            // print_r($_GET['tahun']);exit;
-            // Mengubah hasil query builder menjadi koleksi Laravel
             
 
             $spreadsheet = IOFactory::load($_SERVER['DOCUMENT_ROOT'].'/template_laporan/template_laporan.xlsx');;

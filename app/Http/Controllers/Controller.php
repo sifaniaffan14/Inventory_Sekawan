@@ -10,8 +10,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function response($data=''){
-        if($data){
+    public function response($data){
+        if(gettype($data) == 'array'){
             $operation= array(
                 'status' => true,
                 'message'=>'Success To Load Data',
